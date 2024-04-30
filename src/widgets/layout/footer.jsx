@@ -86,7 +86,7 @@ Footer.defaultProps = {
     {
       color: "blue",
       name: "facebook",
-      path: "https://www.facebook.com/Fundraiser",
+      path: "https://www.facebook.com/fundraiser",
     },
   ],
   menus: [
@@ -96,7 +96,7 @@ Footer.defaultProps = {
         { name: "About Us", path: "/about" },
         { name: "Blog", path: "/blog" },
         {
-          name: "Contact",
+          name: "contact",
           path: "/contact",
         },
       ],
@@ -127,7 +127,7 @@ Footer.defaultProps = {
     <>
       Copyright © {year}
       <a
-        href="https://www.Fundraiser.com?ref=mtk"
+        href="https://www.Fundraiser.com"
         target="_blank"
         className="text-blue-gray-500 transition-colors hover:text-blue-500"
       >

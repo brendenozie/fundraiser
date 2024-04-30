@@ -1,8 +1,11 @@
-import { Home, Profile,SignUp,Contact } from "@/pages";
+import { Home, Profile,SignUp,Contact,SignIn,Fundr } from "@/pages";
 import {
   HomeIcon,
   DocumentTextIcon,
-  PhoneIcon
+  PhoneIcon,
+  UserCircleIcon,
+  ArrowRightOnRectangleIcon,
+  UserPlusIcon
 } from "@heroicons/react/24/solid";
 
 export const routes = [
@@ -14,16 +17,22 @@ export const routes = [
   },
   {
     icon: DocumentTextIcon,
-    name: "about",
-    path: "/contact",
-    element: <Contact/> ,
+    name: "donate",
+    path: "/fundr",
+    element: <Fundr /> ,
   },
-  {
-    icon: PhoneIcon,
-    name: "contact",
-    path: "/contact",
-    element: <Contact/> ,
-  },
+  // {
+  //   icon: DocumentTextIcon,
+  //   name: "about",
+  //   path: "/contact",
+  //   element: <Contact /> ,
+  // },
+  // {
+  //   icon: PhoneIcon,
+  //   name: "contact",
+  //   path: "/contact",
+  //   element: <Contact /> ,
+  // },
   // {
   //   icon: UserCircleIcon,
   //   name: "profile",

@@ -124,8 +124,7 @@ Navbar.defaultProps = {
   brandName: "Fundraiser",
   action: (
     <a
-      href="/contact"
-      target="_blank"
+      href="/fundr"
     >
       <Button variant="gradient" size="sm" fullWidth>
         Make Donation
