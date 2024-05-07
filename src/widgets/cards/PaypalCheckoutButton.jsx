@@ -37,11 +37,11 @@ export function PaypalCheckoutButton(props){
             emailJs.send(
                 serviceID, templateID,
                 {
-                    from_name: `Hamisha Initiative ${data.name}`,
-                    to_name: `Hamisha Admin ${data.name}`,
-                    from_email: data.email,
-                    reply_to: data.email,
-                    message: `I have donated ${data.amount}. ${data.message}`
+                    from_name: `Hamisha Initiative ${product.name}`,
+                    to_name: `Hamisha Admin ${product.name}`,
+                    from_email: product.email,
+                    reply_to: product.email,
+                    message: `I have donated ${product.amount} ${product.phone}. ${product.message}`
                 },
                 "_4BHSbWDKWJGljZ0e" 
             ).then(() => {

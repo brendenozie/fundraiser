@@ -26,7 +26,6 @@ export function Home() {
                                     phone:'',
                                     amount:'1',
                                     message:'',
-                                    provider:'web'
                                   });
 
 

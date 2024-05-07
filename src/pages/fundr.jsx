@@ -26,9 +26,8 @@ export function Fundr() {
                                     name:'',
                                     email:'',
                                     phone:'',
-                                    amount:'',
+                                    amount:'1',
                                     message:'',
-                                    provider:'web'
                                   });
 
 // To fix hydration UI mismatch issues, we need to wait until the component has mounted.
