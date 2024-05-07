@@ -12,19 +12,19 @@ export const contactData = [
     title: "Support people in extreme need",
     icon: UserGroupIcon,
     description:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "Together, we can make a difference—one donation, one supporter, and one cause at a time.",
   },
   {
     title: "Make the world a better place",
     icon: GlobeEuropeAfricaIcon,
     description:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "A powerful way to effect meaningful change and address pressing societal issues",
   },
   {
     title: "Share your love for community",
     icon: HeartIcon,
     description:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
+      "Joining as a contributor opens the door to a world of possibilities and purpose.",
   },
 ];
 

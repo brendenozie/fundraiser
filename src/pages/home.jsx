@@ -159,16 +159,12 @@ export function Home() {
                 Fundraising for the people and causes you care about
               </Typography>
               <Typography className="mb-8 font-normal text-blue-gray-500">
-                Don't let your uses guess by attaching tooltips and popoves to
-                any element. Just make sure you enable them first via
-                JavaScript.
+              Fundraising for the people and causes you care about is a powerful way to create positive change and make a lasting impact. When you engage in fundraising, you're not just raising money—you're igniting hope, transforming lives, and building a better future.
                 <br />
                 <br />
-                The kit comes with three pre-built pages to help you get started
-                faster. You can change the text and images and you're good to
-                go. Just make sure you enable them first via JavaScript.
+                By rallying support from friends, family, and your community, you amplify the reach and impact of your cause. Every dollar raised contributes directly to supporting vital programs, providing essential resources, and making meaningful differences in the lives of individuals and families.
               </Typography>
-              <Button variant="outlined">read more</Button>
+              {/* <Button variant="outlined">read more</Button> */}
             </div>
             <div className="mx-auto mt-24 flex w-full justify-center px-4 md:w-4/12 lg:mt-0">
               <Card className="shadow-lg shadow-gray-500/10">
@@ -188,9 +184,7 @@ export function Home() {
                     You Have The Power Today To Change Tomorrow
                   </Typography>
                   <Typography className="font-normal text-blue-gray-500">
-                    The Arctic Ocean freezes every winter and much of the
-                    sea-ice then thaws every summer, and that process will
-                    continue whatever happens.
+                  Embrace the opportunity to fundraise for the people and causes close to your heart. Your commitment and dedication will help bring about meaningful change and leave a legacy of compassion and generosity for generations to come. Together, we can make a difference—one donation, one supporter, and one cause at a time.
                   </Typography>
                 </CardBody>
               </Card>
@@ -227,9 +221,7 @@ export function Home() {
       <section id="#about" className="relative bg-blue-gray-50/50 py-24 px-4">
         <div className="container mx-auto">
           <PageTitle heading="Your Donation Can Change Someone’s Life" >
-            Put the potentially record low maximum sea ice extent tihs year down
-            to low ice. According to the National Oceanic and Atmospheric
-            Administration, Ted, Scambos.
+          Fundraising isn't just about finances; it's about building connections, fostering empathy, and inspiring others to join in making a difference.  Your efforts demonstrate that ordinary individuals can achieve extraordinary things when they come together with passion and purpose.
           </PageTitle>
           <div className="mx-auto mt-20 mb-48 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
             {contactData.map(({ title, icon, description }) => (

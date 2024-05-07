@@ -10,21 +10,21 @@ export const featuresData = [
     title: "Become A Volunteer",
     icon: UserGroupIcon,
     description:
-      "Divide details about your product or agency work into parts. A paragraph describing a feature will be enough.",
+      "Volunteering is a transformative journey that not only enriches the lives of others but also brings immense joy and fulfillment to your own life. By volunteering, you have the power to make a positive impact on a global scale.",
   },
   {
     color: "orange",
     title: "Fundraising",
     icon: WalletIcon,
     description:
-      "Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious.",
+      "Fundraising is more than just collecting funds; it's about rallying together to support a cause that matters. Your contribution, whether big or small, can make a significant difference in someone's life.",
   },
   {
     color: "orange",
     title: "Make Donation",
     icon: BanknotesIcon,
     description:
-      "Write a few lines about each one. A paragraph describing a feature will be enough. Keep you user engaged!",
+      "By giving generously, you are directly impacting and improving communities, supporting important causes, and making positive change possible. Your support matters, Thank you for making a difference.",
   },
 ];
 

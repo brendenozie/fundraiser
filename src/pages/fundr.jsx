@@ -15,10 +15,95 @@ import {
   PayPalButtons,
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
+import { useState, useEffect } from "react";
 
 
 
 export function Fundr() {
+  const [data,setData] = useState({
+                                    name:'',
+                                    email:'',
+                                    phone:'',
+                                    amount:'1',
+                                    message:'',
+                                    provider:'web'
+                                  });
+
+// To fix hydration UI mismatch issues, we need to wait until the component has mounted.
+const [mounted, setMounted] = useState(false);
+
+useEffect(() => {setMounted(true);}, []);
+
+if (!mounted) return null;
+
+const createOrder = async (data) => {
+                                      try {
+                                        const res = await axios.post("/api/fundraiser", data);
+                                        // res.status === 201 && router.push("/fundraiser/" + res.data._id);
+                                        // dispatch(reset());
+                                      } catch (err) {
+                                        console.log(err);
+                                      }
+                                    };
+
+// Paypal: This values are the props in the UI
+// const amount = "2";
+// const amount = cart.total;
+const currency = "KES";
+
+// Custom component to wrap the PayPalButtons and handle currency changes
+const ButtonWrapper = ({ currency, showSpinner }) => {
+// usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
+// This is the main reason to wrap the PayPalButtons in a new component
+const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+
+useEffect(() => {
+                  dispatch({
+                  type: "resetOptions",
+                  value: {
+                  ...options,
+                  currency: currency,
+              },
+            });
+      }, [currency, showSpinner]);
+
+return (
+<>
+{showSpinner && isPending && <div className="spinner" />}
+<PayPalButtons
+style={{ layout: "vertical" }}
+disabled={false}
+forceReRender={[data.amount, currency, { layout: "vertical" }]}
+fundingSource={undefined}
+createOrder={async (data, actions) => {
+const orderId = await actions.order
+.create({
+purchase_units: [
+{
+amount: {
+currency_code: currency,
+value: data.amount,
+},
+},
+],
+});
+return orderId;
+}}
+onApprove={async function (data, actions) {
+const details = await actions.order.capture();
+console.log(details); // After the order has been approved by Paypal
+const shipping = details.purchase_units[0].shipping;
+createOrder({
+customer: shipping.name.full_name,
+address: shipping.address.address_line_1,
+total: cart.total,
+method: 1, // cash method:0, PayPal method: 1
+});
+}}
+/>
+</>
+);
+};
   return (
     <>
       <img
@@ -48,9 +133,17 @@ export function Fundr() {
             </div>
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" fullWidth>
-              Donate
-            </Button>
+          <PayPalScriptProvider
+                  options={{
+                    "client-id":
+                      "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
+                    components: "buttons",
+                    currency: "KES",
+                    "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
+                  }}
+                >
+                  <ButtonWrapper currency={currency} showSpinner={false} />
+                </PayPalScriptProvider>
             {/* <Typography variant="small" className="mt-6 flex justify-center">
               Already have an account?
               <Link to="/sign-in">

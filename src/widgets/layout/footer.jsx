@@ -79,9 +79,9 @@ export function Footer({ title, description, socials, menus, copyright }) {
 }
 
 Footer.defaultProps = {
-  title: "Fundriser",
+  title: "Hamisha Initiative",
   description:
-    "Always willing to lend a hand.",
+    "Directly impacting and improving communities, supporting important causes, and making positive change possible.",
   socials: [
     {
       color: "blue",
