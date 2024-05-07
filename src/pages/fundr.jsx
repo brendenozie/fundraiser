@@ -10,6 +10,13 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { SimpleFooter } from "@/widgets/layout";
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer,
+} from "@paypal/react-paypal-js";
+
+
 
 export function Fundr() {
   return (
@@ -31,16 +38,11 @@ export function Fundr() {
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
-            <Input variant="standard" label="Name" size="lg" />
-            <Input variant="standard" type="email" label="Email" size="lg" />
-            <Input variant="standard" type="phonenumber" label="Enter Phone Number" size="lg" />
-            <Input variant="standard" type="email" label="Email" size="lg" />
-            <Input
-              variant="standard"
-              type="password"
-              label="Password"
-              size="lg"
-            />
+            <Input variant="standard" label="Name" size="lg"  name="name" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+            <Input variant="standard" type="email" label="Email" size="lg"  name="email" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+            <Input variant="standard" type="phonenumber" label="Enter Phone Number" size="lg"  name="phone" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+            <Input variant="standard" type="amount" label="Amount" size="lg"   name="amount" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+            <Input variant="standard" type="text" label="Message" size="lg"   name="message" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
             <div className="-ml-2.5">
               {/* <Checkbox label="I agree the Terms and Conditions" /> */}
             </div>

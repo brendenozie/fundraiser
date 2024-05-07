@@ -33,9 +33,9 @@ export function SimpleFooter({ brandName, brandLink, routes }) {
 
 SimpleFooter.defaultProps = {
   brandName: "",
-  brandLink: "https://www.Fundraiser.com",
+  brandLink: "https://www.hamishainitiative.com",
   routes: [
-    { name: "", path: "https://www.Fundraiser.com" },
+    { name: "", path: "https://www.hamishainitiative.com" },
     { name: "About Us", path: "/about" },
     { name: "Blog", path: "/blog" },
   ],

@@ -86,7 +86,7 @@ Footer.defaultProps = {
     {
       color: "blue",
       name: "facebook",
-      path: "https://www.facebook.com/fundraiser",
+      path: "https://www.facebook.com/Hamisha Initiative",
     },
   ],
   menus: [
@@ -106,19 +106,19 @@ Footer.defaultProps = {
     //   items: [
     //     {
     //       name: "MIT License",
-    //       path: "https://github.com/Fundraiser/material-tailwind/blob/main/LICENSE.md?ref=mtk",
+    //       path: "https://github.com/Hamisha Initiative/material-tailwind/blob/main/LICENSE.md?ref=mtk",
     //     },
     //     {
     //       name: "Contribute",
-    //       path: "https://github.com/Fundraiser/material-tailwind/blob/main/CONTRIBUTING.md?ref=mtk",
+    //       path: "https://github.com/Hamisha Initiative/material-tailwind/blob/main/CONTRIBUTING.md?ref=mtk",
     //     },
     //     {
     //       name: "Change Log",
-    //       path: "https://github.com/Fundraiser/material-tailwind/blob/main/CHANGELOG.md?ref=mtk",
+    //       path: "https://github.com/Hamisha Initiative/material-tailwind/blob/main/CHANGELOG.md?ref=mtk",
     //     },
     //     {
     //       name: "Contact Us",
-    //       path: "https://Fundraiser-.com/contact-us?ref=mtk",
+    //       path: "https://Hamisha Initiative-.com/contact-us?ref=mtk",
     //     },
     //   ],
     // },
@@ -127,11 +127,11 @@ Footer.defaultProps = {
     <>
       Copyright © {year}
       <a
-        href="https://www.Fundraiser.com"
+        href="https://www.Hamisha Initiative.com"
         target="_blank"
         className="text-blue-gray-500 transition-colors hover:text-blue-500"
       >
-        Fundraiser 
+        Hamisha Initiative 
       </a>
       .
     </>

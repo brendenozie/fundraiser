@@ -9,12 +9,106 @@ import {
   Input,
   Textarea,
 } from "@material-tailwind/react";
+import { useState, useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useRouter } from "next/router";
 import { UsersIcon } from "@heroicons/react/24/solid";
 import { PageTitle, Footer } from "@/widgets/layout";
 import { FeatureCard, TeamCard } from "@/widgets/cards";
 import { featuresData, teamData, contactData } from "@/data";
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer,
+} from "@paypal/react-paypal-js";
 
 export function Home() {
+
+  const [data,setData] = useState({name:'',
+                                    email:'',
+                                    phone:'',
+                                    amount:'1',
+                                    message:'',
+                                    provider:'web'
+                                  });
+
+  // To fix hydration UI mismatch issues, we need to wait until the component has mounted.
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) return null;
+
+  const createOrder = async (data) => {
+    try {
+      const res = await axios.post("/api/fundraiser", data);
+      // res.status === 201 && router.push("/fundraiser/" + res.data._id);
+      // dispatch(reset());
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Paypal: This values are the props in the UI
+  // const amount = "2";
+  // const amount = cart.total;
+  const currency = "KES";
+
+  // Custom component to wrap the PayPalButtons and handle currency changes
+  const ButtonWrapper = ({ currency, showSpinner }) => {
+    // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
+    // This is the main reason to wrap the PayPalButtons in a new component
+    const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+
+    useEffect(() => {
+      dispatch({
+        type: "resetOptions",
+        value: {
+          ...options,
+          currency: currency,
+        },
+      });
+    }, [currency, showSpinner]);
+
+    return (
+      <>
+        {showSpinner && isPending && <div className="spinner" />}
+        <PayPalButtons
+          style={{ layout: "vertical" }}
+          disabled={false}
+          forceReRender={[data.amount, currency, { layout: "vertical" }]}
+          fundingSource={undefined}
+          createOrder={async (data, actions) => {
+            const orderId = await actions.order
+              .create({
+                purchase_units: [
+                  {
+                    amount: {
+                      currency_code: currency,
+                      value: data.amount,
+                    },
+                  },
+                ],
+              });
+            return orderId;
+          }}
+          onApprove={async function (data, actions) {
+            const details = await actions.order.capture();
+            console.log(details); // After the order has been approved by Paypal
+            const shipping = details.purchase_units[0].shipping;
+            createOrder({
+              customer: shipping.name.full_name,
+              address: shipping.address.address_line_1,
+              total: cart.total,
+              method: 1, // cash method:0, PayPal method: 1
+            });
+          }}
+        />
+      </>
+    );
+  };
+
   return (
     <>
       <div className="relative flex h-screen content-center items-center justify-center pt-16 pb-32">
@@ -165,17 +259,28 @@ export function Home() {
           </PageTitle>
           <form className="mx-auto mt-12 max-w-3xl text-center">
             <div className="mb-8 flex gap-8">
-              <Input variant="standard" size="lg" label="Full Name" />
-              <Input variant="standard" size="lg" label="Email Address" />
+              <Input variant="standard" size="lg" label="Full Name" name="name" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Email Address" name="email" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
             </div>
             <div className="mx-auto mt-12 max-w-3xl text-center">              
-              <Input variant="standard" size="lg" label="Your Phone" />
-              <Input variant="standard" size="lg" label="Amount" />
+              <Input variant="standard" size="lg" label="Your Phone" name="phone" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Amount" name="amount" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
             </div>
-            <Textarea variant="standard" size="lg" label="Message" rows={8} />
-            <Button variant="gradient" size="lg" className="mt-8">
-              Send Message
-            </Button>
+            <Textarea variant="standard" size="lg" label="Message" name="message" rows={8} onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+            <PayPalScriptProvider
+                  options={{
+                    "client-id":
+                      "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
+                    components: "buttons",
+                    currency: "KES",
+                    "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
+                  }}
+                >
+                  <ButtonWrapper currency={currency} showSpinner={false} />
+                </PayPalScriptProvider>
+            {/* <Button variant="gradient" size="lg" className="mt-8">
+              Donate
+            </Button> */}
           </form>
         </div>
       </section>

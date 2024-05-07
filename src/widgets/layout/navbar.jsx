@@ -121,7 +121,7 @@ export function Navbar({ brandName, routes, action }) {
 }
 
 Navbar.defaultProps = {
-  brandName: "Fundraiser",
+  brandName: "Hamisha Initiative",
   action: (
     <a
       href="/fundr"
