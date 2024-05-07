@@ -18,6 +18,7 @@ import { FeatureCard, TeamCard, PaypalCheckoutButton } from "@/widgets/cards";
 import { featuresData, teamData, contactData } from "@/data";
 
 
+
 export function Home() {
 
   const [data,setData] = useState({name:'',
@@ -27,6 +28,8 @@ export function Home() {
                                     message:'',
                                     provider:'web'
                                   });
+
+
 
   // To fix hydration UI mismatch issues, we need to wait until the component has mounted.
   const [mounted, setMounted] = useState(false);
@@ -45,6 +48,8 @@ export function Home() {
       console.log(err);
     }
   };
+
+ 
 
   // const product = {
   //                     description: "Learn how to build a website with React JS",
