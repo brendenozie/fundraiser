@@ -14,13 +14,9 @@ import { useState, useEffect } from "react";
 // import { useRouter } from "next/router";
 import { UsersIcon } from "@heroicons/react/24/solid";
 import { PageTitle, Footer } from "@/widgets/layout";
-import { FeatureCard, TeamCard } from "@/widgets/cards";
+import { FeatureCard, TeamCard, PaypalCheckoutButton } from "@/widgets/cards";
 import { featuresData, teamData, contactData } from "@/data";
-import {
-  PayPalScriptProvider,
-  PayPalButtons,
-  usePayPalScriptReducer,
-} from "@paypal/react-paypal-js";
+
 
 export function Home() {
 
@@ -50,64 +46,69 @@ export function Home() {
     }
   };
 
+  // const product = {
+  //                     description: "Learn how to build a website with React JS",
+  //                     price: 29,
+  //                 };
+
   // Paypal: This values are the props in the UI
   // const amount = "2";
   // const amount = cart.total;
-  const currency = "KES";
+  // const currency = "KES";
 
-  // Custom component to wrap the PayPalButtons and handle currency changes
-  const ButtonWrapper = ({ currency, showSpinner }) => {
-    // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
-    // This is the main reason to wrap the PayPalButtons in a new component
-    const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+  // // Custom component to wrap the PayPalButtons and handle currency changes
+  // const ButtonWrapper = ({ currency, showSpinner }) => {
+  //   // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
+  //   // This is the main reason to wrap the PayPalButtons in a new component
+  //   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
-    useEffect(() => {
-      dispatch({
-        type: "resetOptions",
-        value: {
-          ...options,
-          currency: currency,
-        },
-      });
-    }, [currency, showSpinner]);
+  //   useEffect(() => {
+  //     dispatch({
+  //       type: "resetOptions",
+  //       value: {
+  //         ...options,
+  //         currency: currency,
+  //       },
+  //     });
+  //   }, [currency, showSpinner]);
 
-    return (
-      <>
-        {showSpinner && isPending && <div className="spinner" />}
-        <PayPalButtons
-          style={{ layout: "vertical" }}
-          disabled={false}
-          forceReRender={[data.amount, currency, { layout: "vertical" }]}
-          fundingSource={undefined}
-          createOrder={async (data, actions) => {
-            const orderId = await actions.order
-              .create({
-                purchase_units: [
-                  {
-                    amount: {
-                      currency_code: currency,
-                      value: data.amount,
-                    },
-                  },
-                ],
-              });
-            return orderId;
-          }}
-          onApprove={async function (data, actions) {
-            const details = await actions.order.capture();
-            console.log(details); // After the order has been approved by Paypal
-            const shipping = details.purchase_units[0].shipping;
-            createOrder({
-              customer: shipping.name.full_name,
-              address: shipping.address.address_line_1,
-              total: cart.total,
-              method: 1, // cash method:0, PayPal method: 1
-            });
-          }}
-        />
-      </>
-    );
-  };
+  //   return (
+  //     <>
+  //       {showSpinner && isPending && <div className="spinner" />}
+  //       <PayPalButtons
+  //         style={{ layout: "vertical" }}
+  //         disabled={false}
+  //         forceReRender={[data.amount, currency, { layout: "vertical" }]}
+  //         fundingSource={undefined}
+  //         createOrder={async (data, actions) => {
+  //           const orderId = await actions.order
+  //             .create({
+  //               purchase_units: [
+  //                 {
+  //                   amount: {
+  //                     currency_code: "KES",
+  //                     value: data.amount,
+  //                   },
+  //                 },
+  //               ],
+  //             });
+  //           return orderId;
+  //         }}
+  //         onApprove={async function (data, actions) {
+  //           const details = await actions.order.capture();
+  //           console.log(details); // After the order has been approved by Paypal
+  //           const shipping = details.purchase_units[0].shipping;
+  //           createOrder({
+  //             customer: shipping.name.full_name,
+  //             address: shipping.address.address_line_1,
+  //             total: cart.total,
+  //             method: 1, // cash method:0, PayPal method: 1
+  //           });
+  //         }}
+  //       />
+  //     </>
+  //   );
+  // };
 
   return (
     <>
@@ -259,17 +260,17 @@ export function Home() {
               <Input variant="standard" size="lg" label="Amount" name="amount" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
             </div>
             <Textarea variant="standard" size="lg" label="Message" name="message" rows={8} onChange={(e) => { setData({...data, name: e.target.value}) }}/>
-            <PayPalScriptProvider
+            {/* <PayPalScriptProvider
                   options={{
-                    "client-id":
-                      "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
+                    "client-id":"AU6NvD3qayuR4mSVmyf-WNJhFsx1xVft27UuctC3oxzSXdTAfS5cliB7MEP4Jevt81p70nyxBhFxn9B2",// "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
                     components: "buttons",
                     currency: "KES",
                     "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
                   }}
                 >
                   <ButtonWrapper currency={currency} showSpinner={false} />
-                </PayPalScriptProvider>
+                </PayPalScriptProvider> */}
+                <PaypalCheckoutButton product={data} />
             {/* <Button variant="gradient" size="lg" className="mt-8">
               Donate
             </Button> */}
