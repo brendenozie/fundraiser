@@ -133,7 +133,8 @@ export function Home() {
             //   total: cart.total,
             //   method: 1, // cash method:0, PayPal method: 1
             // });
-            handleSubmit();
+            // handleSubmit();
+            alert("Thank you. I will get back to you as soon as possible.")
           }}
         />
       </>
@@ -276,7 +277,7 @@ export function Home() {
 
       <section id="#un" className="relative bg-blue-gray-50/50 py-24 px-4">
         <div className="container mx-auto">
-          <PageTitle heading="Don't feel like giving your private details, no worries make an Anonymous payment">
+          <PageTitle heading="Make a Donation">
           Thank you for choosing to make a difference in a way that truly matters.
           </PageTitle>
           <form className="mx-auto mt-12 max-w-3xl text-center">
@@ -309,7 +310,7 @@ export function Home() {
       </section>
 
       
-      <section id="#about" className="relative bg-blue-gray-50/50 py-24 px-4">
+      {/* <section id="#about" className="relative bg-blue-gray-50/50 py-24 px-4">
         <div className="container mx-auto">
           <PageTitle heading="Your Donation Can Change Someone’s Life" >
           Fundraising isn't just about finances; it's about building connections, fostering empathy, and inspiring others to join in making a difference.  Your efforts demonstrate that ordinary individuals can achieve extraordinary things when they come together with passion and purpose.
@@ -360,7 +361,7 @@ export function Home() {
                 >
                   <ButtonWrapper></ButtonWrapper>
                   {/* //currency={currency} showSpinner={false} /> */}
-                </PayPalScriptProvider>
+                {/* </PayPalScriptProvider> */}
                 {/* <PaypalCheckoutButton 
                     name={dataa.name}
                     email={dataa.email}
@@ -370,10 +371,10 @@ export function Home() {
             {/* <Button variant="gradient" size="lg" className="mt-8">
               Donate
             </Button> */}
-          </form>
-        </div>
-      </section>
-      
+          {/* </form> */}
+        {/* </div> */}
+      {/* </section> */}
+
       <div className="bg-blue-gray-50/50">
         <Footer />
       </div>
