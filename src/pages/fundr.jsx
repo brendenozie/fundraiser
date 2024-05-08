@@ -135,7 +135,8 @@ export function Fundr() {
               //   method: 1, // cash method:0, PayPal method: 1
               // });
               // handleSubmit();
-              alert("Thank you. I will get back to you as soon as possible.")
+              setData({amount: ""} )
+              alert("Thank you. Your contribution has been received.")
             }}
           />
         </>
@@ -188,7 +189,7 @@ export function Fundr() {
             {/* <Input variant="standard" label="Name" size="lg"  name="name" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
             <Input variant="standard" type="email" label="Email" size="lg"  name="email" onChange={(e) => { setData({...data, email: e.target.value}) }}/>
             <Input variant="standard" type="phonenumber" label="Enter Phone Number" size="lg"  name="phone" onChange={(e) => { setData({...data, phone: e.target.value}) }}/> */}
-            <Input variant="standard" type="amount" label="Amount" size="lg"   name="amount" onChange={(e) => { setData({...dataa, amount: e.target.value}) }}/>
+            <Input variant="standard" type="amount" label="Amount" size="lg" value={dataa.value}  name="amount" onChange={(e) => { setData({...dataa, amount: e.target.value}) }}/>
             {/* <Input variant="standard" type="text" label="Message" size="lg"   name="message" onChange={(e) => { setData({...data, message: e.target.value}) }}/> */}
             <div className="-ml-2.5">
               {/* <Checkbox label="I agree the Terms and Conditions" /> */}

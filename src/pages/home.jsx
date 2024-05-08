@@ -134,7 +134,8 @@ export function Home() {
             //   method: 1, // cash method:0, PayPal method: 1
             // });
             // handleSubmit();
-            alert("Thank you. I will get back to you as soon as possible.")
+            setData({amount: ""} )
+            alert("Thank you. Your contribution has been received.")
           }}
         />
       </>
