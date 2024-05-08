@@ -55,7 +55,7 @@ export function PaypalCheckoutButton(props){
   return (
     <PayPalScriptProvider 
     options={{
-        "client-id":  "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
+        "client-id":  "AVeo5yGBOwQgmw3lBv6Fg0hIgVnejLRGWhgxVIhlBo1CGeoYyNy4UJXXshLMTtNSHONpNKrzLwrQ9tNf",
         components: "buttons",
         currency: "USD",
         // "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
