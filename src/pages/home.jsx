@@ -258,7 +258,7 @@ export function Home() {
               <Input variant="standard" size="lg" label="Your Phone" name="phone" onChange={(e) => { setData({...dataa, phone: e.target.value}) }}/>
               <Input variant="standard" size="lg" label="Amount" name="amount" onChange={(e) => { setData({...dataa, amount: e.target.value}) }}/>
             </div>
-            <Textarea variant="standard" size="lg" label="Message" name="message" rows={8} onChange={(e) => { setData({...dataa, message: e.target.value}) }}/>
+            <Input variant="standard" size="lg" label="Message" name="message" rows={8} onChange={(e) => { setData({...dataa, message: e.target.value}) }}/>
             {/* <PayPalScriptProvider
                   options={{
                     "client-id":"AU6NvD3qayuR4mSVmyf-WNJhFsx1xVft27UuctC3oxzSXdTAfS5cliB7MEP4Jevt81p70nyxBhFxn9B2",// "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
@@ -269,7 +269,12 @@ export function Home() {
                 >
                   <ButtonWrapper currency={currency} showSpinner={false} />
                 </PayPalScriptProvider> */}
-                <PaypalCheckoutButton product={dataa} />
+                <PaypalCheckoutButton 
+                    name={dataa.name}
+                    email={dataa.email}
+                    phone={dataa.phone}
+                    message={dataa.message}
+                    amount={dataa.amount} />
             {/* <Button variant="gradient" size="lg" className="mt-8">
               Donate
             </Button> */}

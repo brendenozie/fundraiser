@@ -1,19 +1,17 @@
 import React, {useState} from 'react';
+import PropTypes from "prop-types";
 import {PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js";
 import emailJs from "@emailjs/browser";
 
-export function PaypalCheckoutButton(props){
+export function PaypalCheckoutButton({name,email,amount,phone,message}){
 
-    // const {name,email,amount,phone,message} = props;
-    const {name,email,amount,phone,message} = props.product;
-
-    // console.log(`${name} ${email} ${amount}`);
-    const amt = ""+`${amount}`+"";
-    // console.log(`${amt}`);
-    // console.log(amt);
-    
+    const [amtt, setAmtt] = useState(amount);
     const [paidFor, setPaidFor] = useState(false);
     const [error, setError] = useState(null);
+
+    console.log(amount);
+    console.log(amtt);
+    // console.log(`${name} ${email} ${amount}`);
 
     const handleApprove = (orderId) => {
         setPaidFor(true);
@@ -59,6 +57,8 @@ export function PaypalCheckoutButton(props){
       };
 
   return (
+    <>
+    
     <PayPalScriptProvider 
     options={{
         "client-id":  "AVeo5yGBOwQgmw3lBv6Fg0hIgVnejLRGWhgxVIhlBo1CGeoYyNy4UJXXshLMTtNSHONpNKrzLwrQ9tNf",
@@ -76,12 +76,13 @@ export function PaypalCheckoutButton(props){
                 }
             }}
             createOrder = {(data, actions) => {
+                console.log(amount);
                 return actions.order.create({
                     purchase_units: [
                         {
                             description: `${name} ${email} ${amount}` ,
                             amount: {
-                                value: `${amt}`
+                                value: "0.01"
                               }
                         },
                     ],
@@ -100,6 +101,19 @@ export function PaypalCheckoutButton(props){
             }}
         />
     </PayPalScriptProvider>
+    
+    </>
   )
 }
 
+PaypalCheckoutButton.displayName = "/src/widgets/layout/PaypalCheckoutButton.jsx";
+
+PaypalCheckoutButton.propTypes = {
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    amount: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+  };
+
+  export default PaypalCheckoutButton;
