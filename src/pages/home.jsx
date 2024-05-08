@@ -21,12 +21,7 @@ import { featuresData, teamData, contactData } from "@/data";
 
 export function Home() {
 
-  const [data,setData] = useState({name:'',
-                                    email:'',
-                                    phone:'',
-                                    amount:'0.2',
-                                    message:'',
-                                  });
+  const [dataa,setData] = useState({ });
 
 
 
@@ -256,14 +251,14 @@ export function Home() {
           </PageTitle>
           <form className="mx-auto mt-12 max-w-3xl text-center">
             <div className="mb-8 flex gap-8">
-              <Input variant="standard" size="lg" label="Full Name" name="name" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
-              <Input variant="standard" size="lg" label="Email Address" name="email" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Full Name" name="name" onChange={(e) => { setData({...dataa, name: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Email Address" name="email" onChange={(e) => { setData({...dataa, email: e.target.value}) }}/>
             </div>
             <div className="mx-auto mt-12 max-w-3xl text-center">              
-              <Input variant="standard" size="lg" label="Your Phone" name="phone" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
-              <Input variant="standard" size="lg" label="Amount" name="amount" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Your Phone" name="phone" onChange={(e) => { setData({...dataa, phone: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Amount" name="amount" onChange={(e) => { setData({...dataa, amount: e.target.value}) }}/>
             </div>
-            <Textarea variant="standard" size="lg" label="Message" name="message" rows={8} onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+            <Textarea variant="standard" size="lg" label="Message" name="message" rows={8} onChange={(e) => { setData({...dataa, message: e.target.value}) }}/>
             {/* <PayPalScriptProvider
                   options={{
                     "client-id":"AU6NvD3qayuR4mSVmyf-WNJhFsx1xVft27UuctC3oxzSXdTAfS5cliB7MEP4Jevt81p70nyxBhFxn9B2",// "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
@@ -274,7 +269,7 @@ export function Home() {
                 >
                   <ButtonWrapper currency={currency} showSpinner={false} />
                 </PayPalScriptProvider> */}
-                <PaypalCheckoutButton product={data} />
+                <PaypalCheckoutButton product={dataa} />
             {/* <Button variant="gradient" size="lg" className="mt-8">
               Donate
             </Button> */}

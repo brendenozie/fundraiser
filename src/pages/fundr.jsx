@@ -22,13 +22,7 @@ import { useState, useEffect } from "react";
 
 export function Fundr() {
 
-  const [data,setData] = useState({
-                                    name:'',
-                                    email:'',
-                                    phone:'',
-                                    amount:'0.2',
-                                    message:'',
-                                  });
+  const [data,setData] = useState({ });
 
 // To fix hydration UI mismatch issues, we need to wait until the component has mounted.
 const [mounted, setMounted] = useState(false);
@@ -73,10 +67,10 @@ if (!mounted) return null;
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
             <Input variant="standard" label="Name" size="lg"  name="name" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
-            <Input variant="standard" type="email" label="Email" size="lg"  name="email" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
-            <Input variant="standard" type="phonenumber" label="Enter Phone Number" size="lg"  name="phone" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
-            <Input variant="standard" type="amount" label="Amount" size="lg"   name="amount" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
-            <Input variant="standard" type="text" label="Message" size="lg"   name="message" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+            <Input variant="standard" type="email" label="Email" size="lg"  name="email" onChange={(e) => { setData({...data, email: e.target.value}) }}/>
+            <Input variant="standard" type="phonenumber" label="Enter Phone Number" size="lg"  name="phone" onChange={(e) => { setData({...data, phone: e.target.value}) }}/>
+            <Input variant="standard" type="amount" label="Amount" size="lg"   name="amount" onChange={(e) => { setData({...data, amount: e.target.value}) }}/>
+            <Input variant="standard" type="text" label="Message" size="lg"   name="message" onChange={(e) => { setData({...data, message: e.target.value}) }}/>
             <div className="-ml-2.5">
               {/* <Checkbox label="I agree the Terms and Conditions" /> */}
             </div>

@@ -4,8 +4,14 @@ import emailJs from "@emailjs/browser";
 
 export function PaypalCheckoutButton(props){
 
-    const {product} = props;
+    // const {name,email,amount,phone,message} = props;
+    const {name,email,amount,phone,message} = props.product;
 
+    // console.log(`${name} ${email} ${amount}`);
+    const amt = ""+`${amount}`+"";
+    // console.log(`${amt}`);
+    // console.log(amt);
+    
     const [paidFor, setPaidFor] = useState(false);
     const [error, setError] = useState(null);
 
@@ -14,7 +20,7 @@ export function PaypalCheckoutButton(props){
     }
 
     if(paidFor){
-        alert("Thank You for purchasing");
+        alert("Thank You for Contributing");
         handleSubmit();
     }
 
@@ -37,11 +43,11 @@ export function PaypalCheckoutButton(props){
             emailJs.send(
                 serviceID, templateID,
                 {
-                    from_name: `Hamisha Initiative ${product.name}`,
-                    to_name: `Hamisha Admin ${product.name}`,
-                    from_email: product.email,
-                    reply_to: product.email,
-                    message: `I have donated ${product.amount} ${product.phone}. ${product.message}`
+                    from_name: `Hamisha Initiative ${name}`,
+                    to_name: `Hamisha Admin ${name}`,
+                    from_email: email,
+                    reply_to: email,
+                    message: `I have donated ${amount} ${phone} ${message}`
                 },
                 "_4BHSbWDKWJGljZ0e" 
             ).then(() => {
@@ -60,11 +66,10 @@ export function PaypalCheckoutButton(props){
         currency: "USD",
         // "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
       }}>
-        <PayPalButtons 
-            onClick={(data, actions) => {
+        <PayPalButtons onClick={(data, actions) => {
                 const hasAlreadyBoughtCourse = false;
                 if(hasAlreadyBoughtCourse){
-                    setError("You Already bought this course");
+                    setError("Already Done");
                     return actions.reject();
                 }else{
                     return actions.resolve();
@@ -74,10 +79,10 @@ export function PaypalCheckoutButton(props){
                 return actions.order.create({
                     purchase_units: [
                         {
-                            description: product.message,
+                            description: `${name} ${email} ${amount}` ,
                             amount: {
-                                value: product.amount,
-                            },
+                                value: `${amt}`
+                              }
                         },
                     ],
                 });
@@ -85,7 +90,8 @@ export function PaypalCheckoutButton(props){
             onApprove = { async (data, action) => {
                 // const order = await action.order.capture();
                 // console.log("order", order);
-                handleApprove(data.orderID);
+                // handleApprove(data.orderID);
+                handleSubmit();
             }}
             onCancel={() => {}}
             onError={(err) => {
