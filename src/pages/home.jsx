@@ -14,8 +14,10 @@ import { useState, useEffect } from "react";
 // import { useRouter } from "next/router";
 import { UsersIcon } from "@heroicons/react/24/solid";
 import { PageTitle, Footer } from "@/widgets/layout";
-import { FeatureCard, TeamCard, PaypalCheckoutButton } from "@/widgets/cards";
+import { FeatureCard, TeamCard } from "@/widgets/cards";//PaypalCheckoutButton
 import { featuresData, teamData, contactData } from "@/data";
+import {PayPalScriptProvider, PayPalButtons} from "@paypal/react-paypal-js";
+import emailJs from "@emailjs/browser";
 
 
 
@@ -53,61 +55,114 @@ export function Home() {
   // Paypal: This values are the props in the UI
   // const amount = "2";
   // const amount = cart.total;
-  // const currency = "KES";
+  const currency = "USD";
+
+  const [paidFor, setPaidFor] = useState(false);
+    const [error, setError] = useState(null);
+
+    console.log(amount);
+    console.log(amtt);
+    // console.log(`${name} ${email} ${amount}`);
+
+    const handleApprove = (orderId) => {
+        setPaidFor(true);
+    }
+
+    if(paidFor){
+        alert("Thank You for Contributing");
+        handleSubmit();
+    }
+
+    if(error){
+        alert(error);
+    }
 
   // // Custom component to wrap the PayPalButtons and handle currency changes
-  // const ButtonWrapper = ({ currency, showSpinner }) => {
-  //   // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
-  //   // This is the main reason to wrap the PayPalButtons in a new component
-  //   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+  const ButtonWrapper = () => { //{ currency, showSpinner }
+    // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
+    // This is the main reason to wrap the PayPalButtons in a new component
+    // const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
-  //   useEffect(() => {
-  //     dispatch({
-  //       type: "resetOptions",
-  //       value: {
-  //         ...options,
-  //         currency: currency,
-  //       },
-  //     });
-  //   }, [currency, showSpinner]);
+    // useEffect(() => {
+      // dispatch({
+      //   type: "resetOptions",
+      //   value: {
+      //     ...options,
+      //     currency: currency,
+      //   },
+      // });
+    // }, [currency, showSpinner]);
 
-  //   return (
-  //     <>
-  //       {showSpinner && isPending && <div className="spinner" />}
-  //       <PayPalButtons
-  //         style={{ layout: "vertical" }}
-  //         disabled={false}
-  //         forceReRender={[data.amount, currency, { layout: "vertical" }]}
-  //         fundingSource={undefined}
-  //         createOrder={async (data, actions) => {
-  //           const orderId = await actions.order
-  //             .create({
-  //               purchase_units: [
-  //                 {
-  //                   amount: {
-  //                     currency_code: "KES",
-  //                     value: data.amount,
-  //                   },
-  //                 },
-  //               ],
-  //             });
-  //           return orderId;
-  //         }}
-  //         onApprove={async function (data, actions) {
-  //           const details = await actions.order.capture();
-  //           console.log(details); // After the order has been approved by Paypal
-  //           const shipping = details.purchase_units[0].shipping;
-  //           createOrder({
-  //             customer: shipping.name.full_name,
-  //             address: shipping.address.address_line_1,
-  //             total: cart.total,
-  //             method: 1, // cash method:0, PayPal method: 1
-  //           });
-  //         }}
-  //       />
-  //     </>
-  //   );
-  // };
+    return (
+      <>
+        {/* {showSpinner && isPending && <div className="spinner" />} */}
+        <PayPalButtons
+          style={{ layout: "vertical" }}
+          disabled={false}
+          forceReRender={[dataa.amount, "USD", { layout: "vertical" }]}
+          fundingSource={undefined}
+          onClick={(data, actions) => {
+            const hasAlreadyBoughtCourse = false;
+            if(hasAlreadyBoughtCourse){
+                setError("Already Done");
+                return actions.reject();
+            }else{
+                return actions.resolve();
+            }
+        }}
+          createOrder={async (data, actions) => {
+            const orderId = await actions.order
+              .create({
+                purchase_units: [
+                  {
+                    amount: {
+                      currency_code: "USD",
+                      value: dataa.amount,
+                    },
+                  },
+                ],
+              });
+            return orderId;
+          }}
+          onApprove={async function (data, actions) {
+            const details = await actions.order.capture();
+            console.log(details); // After the order has been approved by Paypal
+            // const shipping = details.purchase_units[0].shipping;
+            // createOrder({
+            //   customer: shipping.name.full_name,
+            //   address: shipping.address.address_line_1,
+            //   total: cart.total,
+            //   method: 1, // cash method:0, PayPal method: 1
+            // });
+            handleSubmit();
+          }}
+        />
+      </>
+    );
+  };
+
+  const handleSubmit = () => {
+    
+    const serviceID = 'default_service';
+    const templateID = 'template_vucqnzi';
+        setLoading(true);
+        emailJs.send(
+            serviceID, templateID,
+            {
+                from_name: `Hamisha Initiative ${dataa.name}`,
+                to_name: `Hamisha Admin ${dataa.name}`,
+                from_email: dataa.email,
+                reply_to: dataa.email,
+                message: `I have donated ${dataa.amount} ${dataa.phone} ${dataa.message}`
+            },
+            "_4BHSbWDKWJGljZ0e" 
+        ).then(() => {
+            setLoading(false);
+            alert("Thank you. I will get back to you as soon as possible.")
+        }, (e) => {
+            alert("Something went wrong.")
+        });
+  };
 
   return (
     <>
@@ -259,22 +314,23 @@ export function Home() {
               <Input variant="standard" size="lg" label="Amount" name="amount" onChange={(e) => { setData({...dataa, amount: e.target.value}) }}/>
             </div>
             <Input variant="standard" size="lg" label="Message" name="message" rows={8} onChange={(e) => { setData({...dataa, message: e.target.value}) }}/>
-            {/* <PayPalScriptProvider
+            <PayPalScriptProvider
                   options={{
-                    "client-id":"AU6NvD3qayuR4mSVmyf-WNJhFsx1xVft27UuctC3oxzSXdTAfS5cliB7MEP4Jevt81p70nyxBhFxn9B2",// "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
+                    "client-id":"AVeo5yGBOwQgmw3lBv6Fg0hIgVnejLRGWhgxVIhlBo1CGeoYyNy4UJXXshLMTtNSHONpNKrzLwrQ9tNf",// "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
                     components: "buttons",
-                    currency: "KES",
-                    "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
+                    currency: "USD",
+                   // "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
                   }}
                 >
-                  <ButtonWrapper currency={currency} showSpinner={false} />
-                </PayPalScriptProvider> */}
-                <PaypalCheckoutButton 
+                  <ButtonWrapper /> 
+                  {/* //currency={currency} showSpinner={false} /> */}
+                </PayPalScriptProvider>
+                {/* <PaypalCheckoutButton 
                     name={dataa.name}
                     email={dataa.email}
                     phone={dataa.phone}
                     message={dataa.message}
-                    amount={dataa.amount} />
+                    amount={dataa.amount} /> */}
             {/* <Button variant="gradient" size="lg" className="mt-8">
               Donate
             </Button> */}

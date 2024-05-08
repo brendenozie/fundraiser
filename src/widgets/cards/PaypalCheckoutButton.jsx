@@ -60,12 +60,12 @@ export function PaypalCheckoutButton({name,email,amount,phone,message}){
     <>
     
     <PayPalScriptProvider 
-    options={{
-        "client-id":  "AVeo5yGBOwQgmw3lBv6Fg0hIgVnejLRGWhgxVIhlBo1CGeoYyNy4UJXXshLMTtNSHONpNKrzLwrQ9tNf",
-        components: "buttons",
-        currency: "USD",
-        // "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
-      }}>
+            options={{
+                "client-id":  "AVeo5yGBOwQgmw3lBv6Fg0hIgVnejLRGWhgxVIhlBo1CGeoYyNy4UJXXshLMTtNSHONpNKrzLwrQ9tNf",
+                components: "buttons",
+                currency: "USD",
+                // "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
+            }}>
         <PayPalButtons onClick={(data, actions) => {
                 const hasAlreadyBoughtCourse = false;
                 if(hasAlreadyBoughtCourse){
