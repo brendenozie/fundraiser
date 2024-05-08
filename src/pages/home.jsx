@@ -24,7 +24,7 @@ export function Home() {
   const [data,setData] = useState({name:'',
                                     email:'',
                                     phone:'',
-                                    amount:'1',
+                                    amount:'0.2',
                                     message:'',
                                   });
 

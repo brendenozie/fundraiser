@@ -26,7 +26,7 @@ export function Fundr() {
                                     name:'',
                                     email:'',
                                     phone:'',
-                                    amount:'1',
+                                    amount:'0.2',
                                     message:'',
                                   });
 
