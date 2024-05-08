@@ -273,6 +273,42 @@ export function Home() {
           </div>
         </div>
       </section>
+
+      <section id="#un" className="relative bg-blue-gray-50/50 py-24 px-4">
+        <div className="container mx-auto">
+          <PageTitle heading="Don't feel like giving your private details, no worries make an Anonymous payment">
+          Thank you for choosing to make a difference in a way that truly matters.
+          </PageTitle>
+          <form className="mx-auto mt-12 max-w-3xl text-center">
+            
+            <div className="mx-auto mt-12 max-w-3xl text-center">              
+              <Input variant="standard" size="lg" value={dataa.amount} label="Amount" name="amount" onChange={(e) => { setData({...dataa, amount: e.target.value}) }}/>
+            </div>
+            <PayPalScriptProvider 
+                  options={{
+                    "client-id":"AVeo5yGBOwQgmw3lBv6Fg0hIgVnejLRGWhgxVIhlBo1CGeoYyNy4UJXXshLMTtNSHONpNKrzLwrQ9tNf",// "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
+                    components: "buttons",
+                    currency: "USD",
+                   // "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
+                  }}
+                >
+                  <ButtonWrapper></ButtonWrapper>
+                  {/* //currency={currency} showSpinner={false} /> */}
+                </PayPalScriptProvider>
+                {/* <PaypalCheckoutButton 
+                    name={dataa.name}
+                    email={dataa.email}
+                    phone={dataa.phone}
+                    message={dataa.message}
+                    amount={dataa.amount} /> */}
+            {/* <Button variant="gradient" size="lg" className="mt-8">
+              Donate
+            </Button> */}
+          </form>
+        </div>
+      </section>
+
+      
       <section id="#about" className="relative bg-blue-gray-50/50 py-24 px-4">
         <div className="container mx-auto">
           <PageTitle heading="Your Donation Can Change Someone’s Life" >
@@ -337,6 +373,7 @@ export function Home() {
           </form>
         </div>
       </section>
+      
       <div className="bg-blue-gray-50/50">
         <Footer />
       </div>
