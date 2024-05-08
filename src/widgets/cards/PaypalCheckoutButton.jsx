@@ -8,6 +8,7 @@ export function PaypalCheckoutButton({name,email,amount,phone,message}){
     const [amtt, setAmtt] = useState(amount);
     const [paidFor, setPaidFor] = useState(false);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     console.log(amount);
     console.log(amtt);

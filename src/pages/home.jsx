@@ -24,11 +24,15 @@ import emailJs from "@emailjs/browser";
 export function Home() {
 
   const [dataa,setData] = useState({ });
+  const currency = "USD";
 
+  const [paidFor, setPaidFor] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
 
   // To fix hydration UI mismatch issues, we need to wait until the component has mounted.
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -55,13 +59,8 @@ export function Home() {
   // Paypal: This values are the props in the UI
   // const amount = "2";
   // const amount = cart.total;
-  const currency = "USD";
-
-  const [paidFor, setPaidFor] = useState(false);
-    const [error, setError] = useState(null);
-
-    console.log(amount);
-    console.log(amtt);
+    // console.log(amount);
+    // console.log(amtt);
     // console.log(`${name} ${email} ${amount}`);
 
     const handleApprove = (orderId) => {
@@ -70,7 +69,7 @@ export function Home() {
 
     if(paidFor){
         alert("Thank You for Contributing");
-        handleSubmit();
+        //handleSubmit();
     }
 
     if(error){
@@ -96,20 +95,20 @@ export function Home() {
     return (
       <>
         {/* {showSpinner && isPending && <div className="spinner" />} */}
-        <PayPalButtons
+        <PayPalButtons  className="mt-8" 
           style={{ layout: "vertical" }}
           disabled={false}
           forceReRender={[dataa.amount, "USD", { layout: "vertical" }]}
           fundingSource={undefined}
           onClick={(data, actions) => {
-            const hasAlreadyBoughtCourse = false;
-            if(hasAlreadyBoughtCourse){
-                setError("Already Done");
-                return actions.reject();
-            }else{
-                return actions.resolve();
-            }
-        }}
+              const hasAlreadyBoughtCourse = false;
+              if(hasAlreadyBoughtCourse){
+                  setError("Already Done");
+                  return actions.reject();
+              }else{
+                  return actions.resolve();
+              }
+          }}
           createOrder={async (data, actions) => {
             const orderId = await actions.order
               .create({
@@ -158,6 +157,7 @@ export function Home() {
             "_4BHSbWDKWJGljZ0e" 
         ).then(() => {
             setLoading(false);
+            setData({});
             alert("Thank you. I will get back to you as soon as possible.")
         }, (e) => {
             alert("Something went wrong.")
@@ -306,15 +306,15 @@ export function Home() {
           </PageTitle>
           <form className="mx-auto mt-12 max-w-3xl text-center">
             <div className="mb-8 flex gap-8">
-              <Input variant="standard" size="lg" label="Full Name" name="name" onChange={(e) => { setData({...dataa, name: e.target.value}) }}/>
-              <Input variant="standard" size="lg" label="Email Address" name="email" onChange={(e) => { setData({...dataa, email: e.target.value}) }}/>
+              <Input variant="standard" size="lg" value={dataa.name} label="Full Name" name="name" onChange={(e) => { setData({...dataa, name: e.target.value}) }}/>
+              <Input variant="standard" size="lg" value={dataa.email} label="Email Address" name="email" onChange={(e) => { setData({...dataa, email: e.target.value}) }}/>
             </div>
             <div className="mx-auto mt-12 max-w-3xl text-center">              
-              <Input variant="standard" size="lg" label="Your Phone" name="phone" onChange={(e) => { setData({...dataa, phone: e.target.value}) }}/>
-              <Input variant="standard" size="lg" label="Amount" name="amount" onChange={(e) => { setData({...dataa, amount: e.target.value}) }}/>
+              <Input variant="standard" size="lg" value={dataa.phone} label="Your Phone" name="phone" onChange={(e) => { setData({...dataa, phone: e.target.value}) }}/>
+              <Input variant="standard" size="lg" value={dataa.amount} label="Amount" name="amount" onChange={(e) => { setData({...dataa, amount: e.target.value}) }}/>
             </div>
-            <Input variant="standard" size="lg" label="Message" name="message" rows={8} onChange={(e) => { setData({...dataa, message: e.target.value}) }}/>
-            <PayPalScriptProvider
+            <Input variant="standard"size="lg" value={dataa.message} label="Message" name="message" rows={8} onChange={(e) => { setData({...dataa, message: e.target.value}) }}/>
+            <PayPalScriptProvider 
                   options={{
                     "client-id":"AVeo5yGBOwQgmw3lBv6Fg0hIgVnejLRGWhgxVIhlBo1CGeoYyNy4UJXXshLMTtNSHONpNKrzLwrQ9tNf",// "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
                     components: "buttons",
@@ -322,7 +322,7 @@ export function Home() {
                    // "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
                   }}
                 >
-                  <ButtonWrapper /> 
+                  <ButtonWrapper></ButtonWrapper>
                   {/* //currency={currency} showSpinner={false} /> */}
                 </PayPalScriptProvider>
                 {/* <PaypalCheckoutButton 
