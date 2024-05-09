@@ -33,12 +33,14 @@ export function Contact() {
     const serviceID = 'default_service';
     const templateID = 'template_vucqnzi';
         setLoading(true);
+        console.log(data);
         emailJs.send(
             serviceID, templateID,
             {
                 from_name: `Hamisha Initiative ${data.name}`,
                 to_name: `Hamisha Admin ${data.name}`,
                 from_email: data.email,
+                to_email: data.email,
                 reply_to: data.email,
                 message: `I have donated ${data.subject} ${data.phone} ${data.message}`
             },
@@ -48,6 +50,8 @@ export function Contact() {
             setLoading(false);
             alert("Thank you. I will get back to you as soon as possible.")
         }, (e) => {
+          console.log(e);
+          console.log(data);
             alert("Something went wrong.")
         });
   };
@@ -91,14 +95,14 @@ export function Contact() {
           </PageTitle>
           <form className="mx-auto mt-12 max-w-3xl text-center">
             <div className="mb-8 flex gap-8">
-              <Input variant="standard" size="lg" label="Full Name" value={data.amount} name="name" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
-              <Input variant="standard" size="lg" label="Email Address" value={data.amount} name="email" onChange={(e) => { setData({...data, email: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Full Name" value={data.name} name="name" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Email Address" value={data.email} name="email" onChange={(e) => { setData({...data, email: e.target.value}) }}/>
             </div>
             <div className="mx-auto mt-12 max-w-3xl text-center">              
-              <Input variant="standard" size="lg" label="Your Phone" value={data.amount} name="phone" onChange={(e) => { setData({...data, phone: e.target.value}) }}/>
-              <Input variant="standard" size="lg" label="Subject" value={data.amount} name="Subject" onChange={(e) => { setData({...data, subject: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Your Phone" value={data.phone} name="phone" onChange={(e) => { setData({...data, phone: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Subject" value={data.subject} name="Subject" onChange={(e) => { setData({...data, subject: e.target.value}) }}/>
             </div>
-            <Textarea variant="standard" size="lg" label="Message" rows={8} value={data.amount} name="message" onChange={(e) => { setData({...data, message: e.target.value}) }}/>
+            <Textarea variant="standard" size="lg" label="Message" rows={8} value={data.message} name="message" onChange={(e) => { setData({...data, message: e.target.value}) }}/>
             <Button variant="gradient" size="lg" className="mt-8" onClick={handleSubmit}>
               Send Message
             </Button>
