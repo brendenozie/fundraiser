@@ -120,12 +120,12 @@ Footer.defaultProps = {
   ],
   copyright: (
     <>
-      Copyright © {year}
+      Copyright © {year} 
       <a
         href="https://www.hamishainitiative.com"
-        className="text-blue-gray-500 transition-colors hover:text-blue-500"
+        className="text-blue-gray-500 transition-colors hover:text-blue-500 pl-2"
       >
-        Hamisha Initiative 
+         Hamisha Initiative 
       </a>
       .
     </>

@@ -259,7 +259,7 @@ export function Home() {
               <TeamCard
                 key={name}
                 img={img}
-                name={""}
+                name={name}
                 position={""}
                 socials={
                   <div className="flex items-center gap-2">

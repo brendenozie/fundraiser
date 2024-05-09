@@ -1,7 +1,7 @@
 export const teamData = [
   {
     img: "/img/team-1.jpg",
-    name: "Ryan Tompson",
+    name: "courtesy reuters",
     position: "",
     socials: [
       {
@@ -20,7 +20,7 @@ export const teamData = [
   },
   {
     img: "/img/team-2.jpg",
-    name: "Romina Hadid",
+    name: "Courtesy AP",
     position: "",
     socials: [
       {
@@ -39,7 +39,7 @@ export const teamData = [
   },
   {
     img: "/img/team-3.jpg",
-    name: "Alexa Smith",
+    name: "Courtesy AP",
     position: "",
     socials: [
       {
@@ -58,7 +58,7 @@ export const teamData = [
   },
   {
     img: "/img/team-4.png",
-    name: "Jenna Kardi",
+    name: "Courtesy AP-GideonMaundu",
     position: "",
     socials: [
       {
