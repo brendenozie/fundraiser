@@ -48,7 +48,6 @@ export function Contact() {
             setLoading(false);
             alert("Thank you. I will get back to you as soon as possible.")
         }, (e) => {
-          // console.log(e);
             alert("Something went wrong.")
         });
   };
