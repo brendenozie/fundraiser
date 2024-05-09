@@ -10,8 +10,8 @@ export function PaypalCheckoutButton({name,email,amount,phone,message}){
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    console.log(amount);
-    console.log(amtt);
+    // console.log(amount);
+    // console.log(amtt);
     // console.log(`${name} ${email} ${amount}`);
 
     const handleApprove = (orderId) => {

@@ -251,16 +251,16 @@ export function Home() {
       </section>
       <section className="px-4 pt-20 pb-48">
         <div className="container mx-auto">
-          <PageTitle heading="Here are our heroes">
-            We celebrate you for your desire and effort. You make the world a better place and we are greatful for the effort you've put in.
+          <PageTitle heading="We celebrate you for your desire and effort.">
+            You make the world a better place and we are greatful for the effort you've put in.
           </PageTitle>
           <div className="mt-24 grid grid-cols-1 gap-12 gap-x-24 md:grid-cols-2 xl:grid-cols-4">
             {teamData.map(({ img, name, position, socials }) => (
               <TeamCard
                 key={name}
                 img={img}
-                name={name}
-                position={position}
+                name={""}
+                position={""}
                 socials={
                   <div className="flex items-center gap-2">
                     {/* {socials.map(({ color, name }) => (

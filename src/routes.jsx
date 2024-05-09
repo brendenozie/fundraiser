@@ -21,16 +21,16 @@ export const routes = [
     path: "/fundr",
     element: <Fundr /> ,
   },
-  // {
-  //   icon: DocumentTextIcon,
-  //   name: "about",
-  //   path: "/contact",
-  //   element: <Contact /> ,
-  // },
+  {
+    icon: DocumentTextIcon,
+    name: "contact",
+    path: "/contact",
+    element: <Contact /> ,
+  },
   // {
   //   icon: PhoneIcon,
-  //   name: "contact",
-  //   path: "/contact",
+  //   name: "about",
+  //   path: "/about",
   //   element: <Contact /> ,
   // },
   // {

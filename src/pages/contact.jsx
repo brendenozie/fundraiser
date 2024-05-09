@@ -1,7 +1,58 @@
-import { Avatar, Typography, Button } from "@material-tailwind/react";
-import { Footer } from "@/widgets/layout";
+import React from "react";
+import { PageTitle, Footer } from "@/widgets/layout";
+import emailJs from "@emailjs/browser";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Typography,
+  Button,
+  IconButton,
+  Input,
+  Textarea,
+} from "@material-tailwind/react";
+import { useState, useEffect } from "react";
+import { featuresData, teamData, contactData } from "@/data";
 
 export function Contact() {
+
+  const [data,setData] = useState({ });
+  const [loading,setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+
+    // To fix hydration UI mismatch issues, we need to wait until the component has mounted.
+
+    useEffect(() => {
+      setMounted(true);
+    }, []);
+    if (!mounted) return null;
+
+  const handleSubmit = () => {
+    
+    const serviceID = 'default_service';
+    const templateID = 'template_vucqnzi';
+        setLoading(true);
+        emailJs.send(
+            serviceID, templateID,
+            {
+                from_name: `Hamisha Initiative ${data.name}`,
+                to_name: `Hamisha Admin ${data.name}`,
+                from_email: data.email,
+                reply_to: data.email,
+                message: `I have donated ${data.subject} ${data.phone} ${data.message}`
+            },
+            "_4BHSbWDKWJGljZ0e" 
+        ).then(() => {
+          setData({});
+            setLoading(false);
+            alert("Thank you. I will get back to you as soon as possible.")
+        }, (e) => {
+          // console.log(e);
+            alert("Something went wrong.")
+        });
+  };
+
   return (
     <>
       <section className="relative block h-[50vh]">
@@ -10,10 +61,8 @@ export function Contact() {
       </section>
       <section id="#about" className="relative bg-blue-gray-50/50 py-24 px-4">
         <div className="container mx-auto">
-          <PageTitle heading="Your Donation Can Change Someone’s Life" >
-            Put the potentially record low maximum sea ice extent tihs year down
-            to low ice. According to the National Oceanic and Atmospheric
-            Administration, Ted, Scambos.
+          <PageTitle heading="Reach out to us" >
+            
           </PageTitle>
           <div className="mx-auto mt-20 mb-48 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
             {contactData.map(({ title, icon, description }) => (
@@ -38,20 +87,20 @@ export function Contact() {
             ))}
           </div>
           <div id="contact"></div>
-          <PageTitle heading="Want to donate?">
+          <PageTitle heading="Contact Us">
             Complete this form and we will get back to you in 24 hours.
           </PageTitle>
           <form className="mx-auto mt-12 max-w-3xl text-center">
             <div className="mb-8 flex gap-8">
-              <Input variant="standard" size="lg" label="Full Name" />
-              <Input variant="standard" size="lg" label="Email Address" />
+              <Input variant="standard" size="lg" label="Full Name" value={data.amount} name="name" onChange={(e) => { setData({...data, name: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Email Address" value={data.amount} name="email" onChange={(e) => { setData({...data, email: e.target.value}) }}/>
             </div>
             <div className="mx-auto mt-12 max-w-3xl text-center">              
-              <Input variant="standard" size="lg" label="Your Phone" />
-              <Input variant="standard" size="lg" label="Amount" />
+              <Input variant="standard" size="lg" label="Your Phone" value={data.amount} name="phone" onChange={(e) => { setData({...data, phone: e.target.value}) }}/>
+              <Input variant="standard" size="lg" label="Subject" value={data.amount} name="Subject" onChange={(e) => { setData({...data, subject: e.target.value}) }}/>
             </div>
-            <Textarea variant="standard" size="lg" label="Message" rows={8} />
-            <Button variant="gradient" size="lg" className="mt-8">
+            <Textarea variant="standard" size="lg" label="Message" rows={8} value={data.amount} name="message" onChange={(e) => { setData({...data, message: e.target.value}) }}/>
+            <Button variant="gradient" size="lg" className="mt-8" onClick={handleSubmit}>
               Send Message
             </Button>
           </form>
