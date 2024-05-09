@@ -117,17 +117,17 @@ export function Profile() {
 
                     <br/> Through this fundraising effort, we intend to:
 
-                    <br/>1. **Immediate Relief Efforts**:
-                    <br/>- **Emergency Supplies**: Distribute essential items such as food, water, blankets, and hygiene kits to affected families.
-                    <br/>- **Temporary Shelter**: Set up temporary shelters and provide accommodation for displaced individuals and families.
-                    <br/>- **Medical Assistance**: Ensure access to medical care and medicines for those injured or at risk of illness due to the floods.
-                    <br/>- **Rescue Operations**: Support ongoing rescue operations to ensure the safety of those stranded or in danger.
+                    <br/>1. ** Immediate Relief Efforts:
+                    <br/>   ** Emergency Supplies : Distribute essential items such as food, water, blankets, and hygiene kits to affected families.
+                    <br/>   ** Temporary Shelter : Set up temporary shelters and provide accommodation for displaced individuals and families.
+                    <br/>   ** Medical Assistance : Ensure access to medical care and medicines for those injured or at risk of illness due to the floods.
+                    <br/>   ** Rescue Operations : Support ongoing rescue operations to ensure the safety of those stranded or in danger.
                     <br/>
-                      2. **Rehabilitation and Reconstruction**:
-                      <br/>- **Infrastructure Repair**: Rebuild damaged infrastructure, including roads, bridges, and buildings, to restore accessibility and functionality.
-                      <br/>- **Livelihood Restoration**: Assist in restoring livelihoods by providing resources for farmers, fishermen, and small businesses affected by the floods.
-                      <br/>- **Psychosocial Support**: Offer counseling and mental health services to individuals and families experiencing trauma or loss.
-                      <br/>- **Disaster Preparedness**: Invest in community education and preparedness initiatives to minimize the impact of future disasters.
+                         2. ** Rehabilitation and Reconstruction :
+                      <br/> ** Infrastructure Repair : Rebuild damaged infrastructure, including roads, bridges, and buildings, to restore accessibility and functionality.
+                      <br/> ** Livelihood Restoration : Assist in restoring livelihoods by providing resources for farmers, fishermen, and small businesses affected by the floods.
+                      <br/> ** Psychosocial Support : Offer counseling and mental health services to individuals and families experiencing trauma or loss.
+                      <br/> ** Disaster Preparedness : Invest in community education and preparedness initiatives to minimize the impact of future disasters.
 
                       <br/>Every donation counts and will directly contribute to making a difference in the lives of those affected by the floods. 
                       <br/>Together, we can provide immediate relief and work towards building a stronger, more resilient community for the future. Join us in this crucial effort to support our neighbors and restore hope in the wake of this disaster.
