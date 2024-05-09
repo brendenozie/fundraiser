@@ -2,6 +2,12 @@ import React from "react";
 import { PageTitle, Footer } from "@/widgets/layout";
 import emailJs from "@emailjs/browser";
 import {
+  MapPinIcon,
+  BriefcaseIcon,
+  BuildingLibraryIcon,
+  PhoneIcon
+} from "@heroicons/react/24/solid";
+import {
   Card,
   CardBody,
   CardHeader,
@@ -63,6 +69,29 @@ export function Contact() {
         <div className="absolute top-0 h-full w-full bg-black/75 bg-cover bg-center" />
       </section>
       <section id="#about" className="relative bg-blue-gray-50/50 py-24 px-4">
+      <div className="my-8 text-center">
+                <Typography variant="h2" color="blue-gray" className="mb-2">
+                  Hamisha Initiative
+                </Typography>
+                <div className="mb-16 flex items-center justify-center gap-2">
+                  <MapPinIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
+                  <Typography className="font-medium text-blue-gray-700">
+                    Nairobi, Kenya
+                  </Typography>
+                </div>
+                <div className="mb-2 flex items-center justify-center gap-2">
+                  <BriefcaseIcon className="-mt-px h-4 w-4 text-blue-gray-700" /> 
+                  <Typography className="font-medium text-blue-gray-700"> 
+                    Sharon Akinyi - Organising Head
+                  </Typography>
+                </div>
+                <div className="mb-2 flex items-center justify-center gap-2">
+                  <PhoneIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
+                  <Typography className="font-medium text-blue-gray-700">
+                    +254 717 168 926
+                  </Typography>
+                </div>
+              </div>
         <div className="container mx-auto">
           <PageTitle heading="Reach out to us" >
             
