@@ -3,6 +3,7 @@ import {
   MapPinIcon,
   BriefcaseIcon,
   BuildingLibraryIcon,
+  PhoneIcon
 } from "@heroicons/react/24/solid";
 import { Footer } from "@/widgets/layout";
 
@@ -94,16 +95,16 @@ export function Profile() {
                   </Typography>
                 </div>
                 <div className="mb-2 flex items-center justify-center gap-2">
-                  {/* <BriefcaseIcon className="-mt-px h-4 w-4 text-blue-gray-700" /> */}
-                  {/* <Typography className="font-medium text-blue-gray-700">
-                    Solution Manager - Creative Tim Officer
-                  </Typography> */}
+                  <BriefcaseIcon className="-mt-px h-4 w-4 text-blue-gray-700" /> 
+                  <Typography className="font-medium text-blue-gray-700"> 
+                    Sharon Akinyi - Organising Head
+                  </Typography>
                 </div>
                 <div className="mb-2 flex items-center justify-center gap-2">
-                  {/* <BuildingLibraryIcon className="-mt-px h-4 w-4 text-blue-gray-700" /> */}
-                  {/* <Typography className="font-medium text-blue-gray-700">
-                    University of Computer Science
-                  </Typography> */}
+                  <PhoneIcon className="-mt-px h-4 w-4 text-blue-gray-700" />
+                  <Typography className="font-medium text-blue-gray-700">
+                    +254 717 168 926
+                  </Typography>
                 </div>
               </div>
 
