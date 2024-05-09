@@ -249,7 +249,7 @@ export function Home() {
           </div>
         </div>
       </section>
-      <section className="px-4 pt-20 pb-48">
+      <section className="px-4 pt-20 pb-24">
         <div className="container mx-auto">
           <PageTitle heading="We celebrate you for your desire and effort.">
             You make the world a better place and we are greatful for the effort you've put in.
@@ -273,6 +273,26 @@ export function Home() {
               />
             ))}
           </div>
+          <PageTitle heading="GIVE OUT AS MUCH AS YOU CAN">
+            You make the world a better place and we are greatful for the effort you've put in.
+          </PageTitle>
+          <div className="mt-12 mb-12 items-center justify-center text-center">
+          <span className="text-xl uppercase">Sharing non-monetary items with flood victims can be incredibly helpful and compassionate.</span>
+          <br/><p className="text-left mt-8">
+                <span className="text-blue-gray-500 text-md mt-8">Commonly needed items include:</span>
+                <br/> 1. Clothing : Clean, gently used clothing suitable for various ages and sizes.
+                <br/> 2. Bedding and Linens : Blankets, sheets, pillows, and towels.
+                <br/> 3. Toiletries : Toothbrushes, toothpaste, soap, shampoo, feminine hygiene products, and diapers.
+                <br/> 4. Non-Perishable Food : Canned goods, dry foods like rice and pasta, bottled water, and snacks.
+                <br/> 5. Basic Supplies : Flashlights, batteries, first aid kits, and cleaning supplies (like disinfectant wipes and bleach).
+              <br/><br/>
+              - In addition to material donations, consider volunteering your time to help with clean-up efforts or providing emotional support to affected individuals.
+              <br/>- Share any specialized skills you have (e.g., medical training, counseling) that could be of value during recovery efforts.
+
+            Remember, the impact of non-monetary donations can be profound, providing practical relief and showing solidarity with those affected by floods. Your efforts, no matter how small, can make a significant difference in helping communities recover and rebuild.
+            </p>
+            </div>
+          <a className="uppercase text-orange-800 mt-24 text-lg border-4 p-4 border-orange-500" href="/contact">Contact US</a>
         </div>
       </section>
 
