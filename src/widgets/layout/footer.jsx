@@ -20,7 +20,6 @@ export function Footer({ title, description, socials, menus, copyright }) {
                 <a
                   key={name}
                   href={path}
-                  target="_blank"
                   rel="noopener noreferrer"
                 >
                   <IconButton color="white" className="rounded-full">
@@ -48,7 +47,6 @@ export function Footer({ title, description, socials, menus, copyright }) {
                       <Typography
                         as="a"
                         href={item.path}
-                        target="_blank"
                         rel="noreferrer"
                         variant="small"
                         className="mb-2 block font-normal text-blue-gray-500 hover:text-blue-gray-700"
@@ -93,12 +91,9 @@ Footer.defaultProps = {
     {
       name: "useful links",
       items: [
-        // { name: "About Us", path: "/about" },
-        // { name: "Blog", path: "/blog" },
-        {
-          name: "contact",
-          path: "/contact",
-        },
+        { name: "About Us", path: "/profile" },
+        { name: "contact",  path: "/contact" },        
+        { name: "donate", path: "/fundr" },
       ],
     },
     // {
@@ -127,8 +122,7 @@ Footer.defaultProps = {
     <>
       Copyright © {year}
       <a
-        href="https://www.Hamisha Initiative.com"
-        target="_blank"
+        href="https://www.hamishainitiative.com"
         className="text-blue-gray-500 transition-colors hover:text-blue-500"
       >
         Hamisha Initiative 

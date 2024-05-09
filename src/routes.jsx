@@ -27,12 +27,12 @@ export const routes = [
     path: "/contact",
     element: <Contact /> ,
   },
-  // {
-  //   icon: PhoneIcon,
-  //   name: "about",
-  //   path: "/about",
-  //   element: <Contact /> ,
-  // },
+  {
+    icon: PhoneIcon,
+    name: "about",
+    path: "/profile",
+    element: <Profile /> ,
+  },
   // {
   //   icon: UserCircleIcon,
   //   name: "profile",
