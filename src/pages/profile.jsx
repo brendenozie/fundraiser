@@ -124,7 +124,6 @@ export function Profile() {
                     <br/>   ** Rescue Operations : Support ongoing rescue operations to ensure the safety of those stranded or in danger.
                     <br/>
                          2. ** Rehabilitation and Reconstruction :
-                      <br/> ** Infrastructure Repair : Rebuild damaged infrastructure, including roads, bridges, and buildings, to restore accessibility and functionality.
                       <br/> ** Livelihood Restoration : Assist in restoring livelihoods by providing resources for farmers, fishermen, and small businesses affected by the floods.
                       <br/> ** Psychosocial Support : Offer counseling and mental health services to individuals and families experiencing trauma or loss.
                       <br/> ** Disaster Preparedness : Invest in community education and preparedness initiatives to minimize the impact of future disasters.
