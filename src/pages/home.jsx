@@ -134,34 +134,40 @@ export function Home() {
             //   method: 1, // cash method:0, PayPal method: 1
             // });
             // handleSubmit();
-            setData({amount: ""} )
-            alert("Thank you. Your contribution has been received.")
+            handleSendEmail();
           }}
         />
       </>
     );
   };
 
-  const handleSubmit = () => {
+  const handleSendEmail = () => {
     
     const serviceID = 'default_service';
     const templateID = 'template_vucqnzi';
         setLoading(true);
+        console.log(data);
         emailJs.send(
             serviceID, templateID,
             {
                 from_name: `Hamisha Initiative ${dataa.name}`,
                 to_name: `Hamisha Admin ${dataa.name}`,
                 from_email: dataa.email,
+                to_email: dataa.email,
                 reply_to: dataa.email,
-                message: `I have donated ${dataa.amount} ${dataa.phone} ${dataa.message}`
+                message: `I have donated ${dataa.subject} ${dataa.phone} ${dataa.message}`
             },
             "_4BHSbWDKWJGljZ0e" 
         ).then(() => {
+          setData({});
             setLoading(false);
-            setData({});
-            alert("Thank you. I will get back to you as soon as possible.")
+            // alert("Thank you. I will get back to you as soon as possible.")
+            
+            setData({amount: "",name: "",message:"", email:"", phone: ""} );
+            alert("Thank you. Your contribution has been received.")
         }, (e) => {
+          // console.log(e);
+          // console.log(data);
             alert("Something went wrong.")
         });
   };
@@ -296,9 +302,78 @@ export function Home() {
         </div>
       </section>
 
+      
+      <section id="#about" className="relative bg-blue-gray-50/50 py-24 px-4">
+        <div className="container mx-auto">
+          <PageTitle heading="Your Donation Can Change Someone’s Life" >
+          Fundraising isn't just about finances; it's about building connections, fostering empathy, and inspiring others to join in making a difference.  Your efforts demonstrate that ordinary individuals can achieve extraordinary things when they come together with passion and purpose.
+          </PageTitle>
+          <div className="mx-auto mt-20 mb-48 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
+            {contactData.map(({ title, icon, description }) => (
+              <Card
+                key={title}
+                color="transparent"
+                shadow={false}
+                className="text-center text-blue-gray-900"
+              >
+                <div className="mx-auto mb-6 grid h-14 w-14 place-items-center rounded-full bg-white shadow-lg shadow-gray-500/20 text-orange-600">
+                  {React.createElement(icon, {
+                    className: "w-5 h-5 text-orange",
+                  })}
+                </div>
+                <Typography variant="h5" color="blue-gray" className="mb-2">
+                  {title}
+                </Typography>
+                <Typography className="font-normal text-blue-gray-500">
+                  {description}
+                </Typography>
+              </Card>
+            ))}
+          </div>
+          <div id="contact"></div>
+          <PageTitle heading="Want to donate?">
+            Complete this form to submit your donation and we will get back to you within 24 hours.
+          </PageTitle>
+          <form className="mx-auto mt-12 max-w-3xl text-center">
+            <div className="mb-8 flex gap-8">
+              <Input variant="standard" size="lg" value={dataa.name} label="Full Name" name="name" onChange={(e) => { setData({...dataa, name: e.target.value}) }}/>
+              <Input variant="standard" size="lg" value={dataa.email} label="Email Address" name="email" onChange={(e) => { setData({...dataa, email: e.target.value}) }}/>
+            </div>
+            <div className="mx-auto mt-12 max-w-3xl text-center">              
+              <Input variant="standard" size="lg" value={dataa.phone} label="Your Phone" name="phone" onChange={(e) => { setData({...dataa, phone: e.target.value}) }}/>
+              <Input variant="standard" size="lg" value={dataa.amount} label="Amount" name="amount" onChange={(e) => { setData({...dataa, amount: e.target.value}) }}/>
+            </div>
+            <Input variant="standard"size="lg" value={dataa.message} label="Message" name="message" rows={8} onChange={(e) => { setData({...dataa, message: e.target.value}) }}/>
+            <PayPalScriptProvider 
+                  options={{
+                    "client-id":"AVeo5yGBOwQgmw3lBv6Fg0hIgVnejLRGWhgxVIhlBo1CGeoYyNy4UJXXshLMTtNSHONpNKrzLwrQ9tNf",// "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
+                    components: "buttons",
+                    currency: "USD",
+                   // "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
+                  }}
+                >
+                  <ButtonWrapper></ButtonWrapper>
+                  {/* //currency={currency} showSpinner={false} /> */}
+                </PayPalScriptProvider>
+                {/* <PaypalCheckoutButton 
+                    name={dataa.name}
+                    email={dataa.email}
+                    phone={dataa.phone}
+                    message={dataa.message}
+                    amount={dataa.amount} /> */}
+            {/* <Button variant="gradient" size="lg" className="mt-8">
+              Donate
+            </Button> */}
+          </form>
+        </div>
+       </section>
+
+
+       
+
       <section id="#un" className="relative bg-blue-gray-50/50 py-24 px-4">
         <div className="container mx-auto">
-          <PageTitle heading="Make a Donation">
+          <PageTitle heading="Make Anonymous Donation">
           Thank you for choosing to make a difference in a way that truly matters.
           </PageTitle>
           <form className="mx-auto mt-12 max-w-3xl text-center">
@@ -330,71 +405,6 @@ export function Home() {
         </div>
       </section>
 
-      
-      {/* <section id="#about" className="relative bg-blue-gray-50/50 py-24 px-4">
-        <div className="container mx-auto">
-          <PageTitle heading="Your Donation Can Change Someone’s Life" >
-          Fundraising isn't just about finances; it's about building connections, fostering empathy, and inspiring others to join in making a difference.  Your efforts demonstrate that ordinary individuals can achieve extraordinary things when they come together with passion and purpose.
-          </PageTitle>
-          <div className="mx-auto mt-20 mb-48 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 lg:grid-cols-3">
-            {contactData.map(({ title, icon, description }) => (
-              <Card
-                key={title}
-                color="transparent"
-                shadow={false}
-                className="text-center text-blue-gray-900"
-              >
-                <div className="mx-auto mb-6 grid h-14 w-14 place-items-center rounded-full bg-white shadow-lg shadow-gray-500/20 text-orange-600">
-                  {React.createElement(icon, {
-                    className: "w-5 h-5 text-orange",
-                  })}
-                </div>
-                <Typography variant="h5" color="blue-gray" className="mb-2">
-                  {title}
-                </Typography>
-                <Typography className="font-normal text-blue-gray-500">
-                  {description}
-                </Typography>
-              </Card>
-            ))}
-          </div>
-          <div id="contact"></div>
-          <PageTitle heading="Want to donate?">
-            Complete this form and we will get back to you in 24 hours.
-          </PageTitle>
-          <form className="mx-auto mt-12 max-w-3xl text-center">
-            <div className="mb-8 flex gap-8">
-              <Input variant="standard" size="lg" value={dataa.name} label="Full Name" name="name" onChange={(e) => { setData({...dataa, name: e.target.value}) }}/>
-              <Input variant="standard" size="lg" value={dataa.email} label="Email Address" name="email" onChange={(e) => { setData({...dataa, email: e.target.value}) }}/>
-            </div>
-            <div className="mx-auto mt-12 max-w-3xl text-center">              
-              <Input variant="standard" size="lg" value={dataa.phone} label="Your Phone" name="phone" onChange={(e) => { setData({...dataa, phone: e.target.value}) }}/>
-              <Input variant="standard" size="lg" value={dataa.amount} label="Amount" name="amount" onChange={(e) => { setData({...dataa, amount: e.target.value}) }}/>
-            </div>
-            <Input variant="standard"size="lg" value={dataa.message} label="Message" name="message" rows={8} onChange={(e) => { setData({...dataa, message: e.target.value}) }}/>
-            <PayPalScriptProvider 
-                  options={{
-                    "client-id":"AVeo5yGBOwQgmw3lBv6Fg0hIgVnejLRGWhgxVIhlBo1CGeoYyNy4UJXXshLMTtNSHONpNKrzLwrQ9tNf",// "ARUZvMP1Vqt1C7igVbVW8Sg3-Su9hwZuGKwcQ9i9XX3a7e-5dBE--NQV8KijMzgtNii5ubKz-zJnqmxX",
-                    components: "buttons",
-                    currency: "USD",
-                   // "disable-funding": "credit,card,p24", // to disable any other payment methods which collaborates with paypal
-                  }}
-                >
-                  <ButtonWrapper></ButtonWrapper>
-                  {/* //currency={currency} showSpinner={false} /> */}
-                {/* </PayPalScriptProvider> */}
-                {/* <PaypalCheckoutButton 
-                    name={dataa.name}
-                    email={dataa.email}
-                    phone={dataa.phone}
-                    message={dataa.message}
-                    amount={dataa.amount} /> */}
-            {/* <Button variant="gradient" size="lg" className="mt-8">
-              Donate
-            </Button> */}
-          {/* </form> */}
-        {/* </div> */}
-      {/* </section> */}
 
       <div className="bg-blue-gray-50/50">
         <Footer />
